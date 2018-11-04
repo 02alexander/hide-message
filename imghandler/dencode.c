@@ -6,15 +6,13 @@ void encodeMsg(image *img, char *msg)
 	char tch;
 	int curpx;
 
-	// loops through every 8th pixel 
+	// loops through every 8th pixel and every character in msg
 	for (curpx = 0; curpx < img->size - 1; ++msg, curpx += 8) {
 
 
-		tch = *msg; /* temporary char so
-		 * the shift operator doesn't change the original value */
+		tch = *msg; /* temporary char so the shift operator doesn't change the original value */
 
-		/* loops through each bit in msg and
-		 * puts it in the first bit of a pixel  */
+		/* loops through each bit in tch and puts it in the first bit of a pixel  */
 		for (int i = 0; i < 8; ++i, tch<<=1) {
 			if (IS_ON(tch, 7)) {
 				TURN_ON(img->pixels[curpx + i], 0);
